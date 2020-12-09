@@ -1,0 +1,130 @@
+---
+layout: page
+title: "About"
+description: "Hi, this is Jiayue Cai."
+header-img: "img/post-bg-rwd.jpg"
+---
+
+<!-- Language Selector -->
+<!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select> -->
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+
+    <!--copied from markdown -->
+    <blockquote><p>Know more, Do more, Be more. &emsp; —— 陆奇 </p></blockquote>
+	
+	<p> Hi，我是<strong>蔡嘉跃</strong>，研究生毕业于东南大学CS专业</p>
+	<p>  热爱算法研究、建模、科研、软件项目开发以及各种文娱活动</p>
+	<p>  学习、工作之余，我还是一个乒乓球爱好者</p>
+    <p>  英文版自我介绍见 <a href="https://coladrill.github.io/ColaDrill">English Homepage</a> ,详细简历见 <a href="https://www.linkedin.com/in/jiayuecai/">LinkedIn</a></p>
+    <p>  如果有什么问题，欢迎提出探讨~ </p><br/>
+	
+	<p>  此外，我附加推荐一些牛人的博客，分享给大家，一起学习进步！</p>
+	<p>
+	<a href="http://mli.github.io/">CMU-李沐前辈</a>、
+	<a href="http://wnzhang.net/">上交-张伟楠老师</a>、
+	<a href="http://www.thuir.org/group/~mzhang/">清华-张敏老师</a>、
+	<a href="https://arxiv.org/search/?query=kun+gai&searchtype=author&abstracts=show&order=-announced_date_first&size=50">阿里妈妈-盖坤前辈</a>、
+	<a href="http://wepon.me/">北大-wepon前辈</a>、
+	<a href="https://blog.csdn.net/bryan__">腾讯-bryan前辈</a>、
+	<a href="http://uule.iteye.com/">全栈牛人-uule</a>、
+	<a href="https://github.com/plantsgo?tab=repositories">竞赛大佬-植物</a>、
+	<a href="https://zhuanlan.zhihu.com/c_152307828">特征大佬-鱼遇雨欲语与余</a>、
+	<a href="https://ask.hellobi.com/blog/id-pythoncrawl">用户画像/爬虫-watermelon</a>、
+	<a href="https://cloud.tencent.com/developer/user/1336789">15年阿里星-datayx</a>、
+	<a href="https://www.zhihu.com/people/shenweichen/posts">浙大-浅梦</a>、
+	<a href="https://www.zhihu.com/people/yang-yi-ming-80/posts">中科大-杨镒铭</a>、
+	<a href="https://cloud.tencent.com/developer/user/1622140">人大-石晓文</a>
+</a>
+	<br/>
+	<p>  所有博客开放转载，注明出处即可。</p>
+	</p>
+	
+</div>
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+    // init
+    _render();
+</script>
+
+
+<!-- Gitalk 评论 start  -->
+{% if site.gitalk.enable %}
+<!-- Gitalk link  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+    <script type="text/javascript">
+    var gitalk = new Gitalk({
+    clientID: '{{site.gitalk.clientID}}',
+    clientSecret: '{{site.gitalk.clientSecret}}',
+    repo: '{{site.gitalk.repo}}',
+    owner: '{{site.gitalk.owner}}',
+    admin: ['{{site.gitalk.admin}}'],
+    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
+    id: 'about',
+    });
+    gitalk.render('gitalk-container');
+</script>
+{% endif %}
+<!-- Gitalk end -->
+
+ <!-- disqus 评论框 start  -->
+{% if site.disqus.enable %}
+
+<div class="comment">
+    <div id="disqus_thread" class="disqus-thread">
+    </div>
+</div>
+<!-- disqus 评论框 end -->
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "{{site.disqus.username}}";
+    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
+    var disqus_url = "{{site.url}}{{page.url}}";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+{% endif %}
